@@ -35,16 +35,10 @@
             box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.1), 0 2px 4px -1px rgba(16, 185, 129, 0.06);
         }
         /* Tăng chiều cao tối đa cho canvas để biểu đồ chi tiết hơn */
-        canvas {
-            max-height: 450px; 
-        }
-        /* Điều chỉnh kích thước font cho nhãn biểu đồ quá dài */
-        .chart-container {
-            padding: 1rem;
-        }
-        /* Custom styles cho biểu đồ cột ngang để nhãn dễ đọc hơn */
         .chart-container-tall {
-            height: 600px; /* Tăng chiều cao cho biểu đồ có nhiều cột đứng chi tiết */
+            position: relative;
+            height: 450px; 
+            width: 100%;
         }
     </style>
 </head>
@@ -224,31 +218,31 @@
             </div>
         </section>
 
-        <!-- 5. Tỷ lệ Đi học (3 Biểu đồ CỘT chi tiết theo Tên Lớp/Ngành) -->
+        <!-- 5. Tỷ lệ Đi học (Cập nhật 3 Biểu đồ CỘT chi tiết theo Dữ liệu Mới) -->
         <section class="mb-10 p-6 bg-primary-light rounded-lg card-shadow">
             <h2 class="text-3xl font-bold text-dark-text mb-6 border-l-4 border-secondary-green pl-3">5. Phân tích Tỷ lệ Đi học tháng 10 (Chi tiết từng Lớp/Ngành)</h2>
             
             <div class="grid grid-cols-1 gap-8">
                 
-                <!-- Biểu đồ 1: Các lớp hệ Phổ thông Cao đẳng (17 lớp chi tiết) -->
+                <!-- Biểu đồ 1: Các lớp hệ Phổ thông Cao đẳng (18 lớp chi tiết) -->
                 <div class="bg-white p-4 rounded-lg chart-container-tall border-t-4 border-secondary-green">
-                    <h3 class="text-xl font-semibold text-primary-green mb-3 text-center">Hệ PTCĐ - Tỷ lệ Đi học theo Tên Lớp (17 Lớp)</h3>
+                    <h3 class="text-xl font-semibold text-primary-green mb-3 text-center">Tỷ Lệ Đi Học: Hệ Phổ Thông Cao Đẳng (18 Lớp)</h3>
                     <canvas id="attendancePTCDChart"></canvas>
-                    <p class="text-xs text-center text-gray-500 mt-2">Cần đặc biệt quan tâm các lớp dưới 75% như 10A04, 11C02, và 12C02.</p>
+                    <p class="text-xs text-center text-gray-500 mt-2">Các lớp dưới 75% (10A3, 10A6) cần được giám sát nề nếp chặt chẽ hơn.</p>
                 </div>
                 
-                <!-- Biểu đồ 2: Các lớp hệ Cao đẳng (11 Ngành chi tiết) -->
+                <!-- Biểu đồ 2: Tỷ lệ đi học Tiếng Đức (ĐỒNG NHẤT MÀU XANH) -->
                 <div class="bg-white p-4 rounded-lg chart-container-tall border-t-4 border-secondary-green">
-                    <h3 class="text-xl font-semibold text-primary-green mb-3 text-center">Hệ Cao đẳng - Tỷ lệ Đi học theo Ngành (11 Ngành)</h3>
-                    <canvas id="attendanceCDChart"></canvas>
-                    <p class="text-xs text-center text-gray-500 mt-2">Ngành Công nghệ Ô tô và Tiếng Nhật có tỷ lệ chuyên cần cần được cải thiện.</p>
+                    <h3 class="text-xl font-semibold text-primary-green mb-3 text-center">Tỷ Lệ Đi Học: Ngành Tiếng Đức (4 Lớp)</h3>
+                    <canvas id="attendanceDEChart"></canvas>
+                    <p class="text-xs text-center text-gray-500 mt-2">Lớp TĐA1-08 có tỷ lệ chuyên cần thấp (61%), cần theo dõi sát sao.</p>
                 </div>
 
-                <!-- Biểu đồ 3: Các lớp Tiếng Đức -->
-                <div class="bg-white p-4 rounded-lg chart-container border-t-4 border-secondary-green">
-                    <h3 class="text-xl font-semibold text-primary-green mb-3 text-center">Các lớp Tiếng Đức - Tỷ lệ Đi học theo Lớp</h3>
-                    <canvas id="attendanceGermanChart"></canvas>
-                    <p class="text-xs text-center text-gray-500 mt-2">Lớp TDA1-08 có tỷ lệ thấp nhất (61%) cần xử lý dứt điểm.</p>
+                <!-- Biểu đồ 3: Các lớp hệ Cao đẳng (11 Ngành chi tiết) -->
+                <div class="bg-white p-4 rounded-lg chart-container-tall border-t-4 border-secondary-green">
+                    <h3 class="text-xl font-semibold text-primary-green mb-3 text-center">Tỷ Lệ Đi Học: Lớp Ngành 11 (11 Ngành)</h3>
+                    <canvas id="attendanceCDChart"></canvas>
+                    <p class="text-xs text-center text-gray-500 mt-2">Công nghệ ô tô (68%) và Tiếng Nhật (69%) có tỷ lệ chuyên cần rất thấp, cần xử lý dứt điểm.</p>
                 </div>
             </div>
         </section>
@@ -307,7 +301,7 @@
                 <p class="text-sm text-gray-700 mt-1">Công suất cơ sở Dinhle đạt 93% gây khó khăn đáng kể trong việc **xếp lịch học bù** và **tổ chức sự kiện** lớn. Cần có kế hoạch sử dụng linh hoạt và xem xét chuyển một số lớp ghép/lớp học bù sang cơ sở Cầu Giấy để giảm tải cho Dinhle.</p>
             </div>
         </section>
-        
+
         <!-- 8. Báo cáo Tình hình Giáo viên (Cập nhật Vấn đề Nề nếp) -->
         <section class="mb-10 p-6 bg-white rounded-lg card-shadow">
             <h2 class="text-3xl font-bold text-dark-text mb-4 border-l-4 border-secondary-green pl-3">8. Tình hình Giáo viên: Vấn đề Nề nếp & Giám sát</h2>
@@ -341,38 +335,36 @@
     </div>
 
     <script type="text/javascript">
+        // =========================================================
+        // DỮ LIỆU TỶ LỆ ĐI HỌC (CẬP NHẬT THEO YÊU CẦU MỚI NHẤT)
+        // =========================================================
+
+        // 5.1. Hệ Phổ thông Cao đẳng (18 lớp chi tiết)
+        const ptcdAttendanceData = {
+            '10A3': 73, '10A4': 76, '10A5': 76, '10A6': 74, '10A7': 76,
+            '11A4': 80, '11A5': 76, '11A6': 82, '11A7': 81, '11A8': 83,
+            '11A9': 89, '12A3': 84, '12A4': 86, '12A5': 84, '12A6': 80,
+            '12A8': 85, '12A9': 83, '12A10': 86
+        };
+
+        // 5.2. Hệ Cao đẳng (11 ngành chi tiết)
+        const cdAttendanceData = {
+            'Phiên dịch tiếng anh': 79, 'Tiến Trung': 82, 'Digital Marketing': 75,
+            'Thiết kế đồ họa': 78, 'Ứng dụng phần mềm': 76, 'Công nghệ ôto': 68,
+            'Tiếng nhật': 69, 'Tiếng Hàn': 89, 'Quản trị khách sạn': 77,
+            'Quản trị doanh nghiệp': 78, 'Chăm sóc sắc đẹp': 80
+        };
+
+        // 5.3. Ngành Tiếng Đức (4 lớp chi tiết) - Dữ liệu mới
+        const deAttendanceData = {
+            'TĐA1-08': 61, 'TĐA2-09': 91, 'TĐB1-07': 88, 'TĐA1-10': 79
+        };
+        
         // --- Dữ liệu báo cáo Học lại ---
         const debtData = {
             k22: { total: 249, paid: 193 },
             k23: { total: 422, paid: 85 },
             k24: { total: 529, paid: 6 },
-        };
-
-        // --- Dữ liệu tỷ lệ Đi học (Đã chỉnh sửa chi tiết Tên Lớp/Ngành) ---
-        // 5.1. Hệ Phổ thông Cao đẳng (17 lớp chi tiết)
-        const ptcdAttendanceData = {
-            labels: [
-                '10A01 (78%)', '10A02 (81%)', '10A03 (79%)', '10A04 (73%)', '10A05 (77%)', 
-                '11A01 (85%)', '11A02 (83%)', '11A03 (86%)', '11B01 (82%)', '11C01 (79%)', '11C02 (74%)',
-                '12A01 (88%)', '12A02 (87%)', '12B01 (85%)', '12B02 (83%)', '12C01 (84%)', '12C02 (72%)' 
-            ],
-            data: [78, 81, 79, 73, 77, 85, 83, 86, 82, 79, 74, 88, 87, 85, 83, 84, 72],
-        };
-
-        // 5.2. Hệ Cao đẳng (11 ngành chi tiết)
-        const cdAttendanceData = {
-            labels: [
-                'PDTA (79%)', 'Thư ký (89%)', 'Tiếng Trung (75%)', 'TK Đồ họa (78%)', 'UDPM (76%)', 
-                'CN Ô tô (68%)', 'Tiếng Nhật (69%)', 'QT Khách sạn (77%)', 'QT Doanh nghiệp (78%)', 
-                'CSSD (80%)', 'Tiếng Hàn (84%)'
-            ],
-            data: [79, 89, 75, 78, 76, 68, 69, 77, 78, 80, 84],
-        };
-
-        // 5.3. Các lớp Tiếng Đức (4 lớp chi tiết)
-        const germanAttendanceData = {
-            labels: ['TDA1-08 (61%)', 'TDA2-09 (91%)', 'TDB1-07 (88%)', 'TDA1-10 (79%)'],
-            data: [61, 91, 88, 79],
         };
 
         // --- Dữ liệu thống kê quy mô HS PTCĐ ---
@@ -383,117 +375,64 @@
 
 
         // =========================================================
-        // 4. Biểu đồ Báo cáo Học lại
+        // HÀM TẠO BIỂU ĐỒ CỘT (Có màu cảnh báo)
         // =========================================================
 
-        // 4.1. Biểu đồ cột xếp chồng (Tổng SV Nợ môn vs SV đã Học lại)
-        const debtCtx = document.getElementById('debtChart').getContext('2d');
-        new Chart(debtCtx, {
-            type: 'bar',
-            data: {
-                labels: ['K22+K22A', 'K23+K23A', 'K24+K24A'],
-                datasets: [
-                    {
-                        label: 'Số SV Cần Học lại',
-                        data: [debtData.k22.total, debtData.k23.total, debtData.k24.total],
-                        backgroundColor: '#D1FAE5', // Xanh nhạt
-                        borderColor: '#10B981',
-                        borderWidth: 1,
-                        stack: 'Stack 0',
-                    },
-                    {
-                        label: 'Số SV Đã Học lại (Hoàn thành)',
-                        data: [debtData.k22.paid, debtData.k23.paid, debtData.k24.paid],
-                        backgroundColor: '#10B981', // Xanh đậm
-                        borderColor: '#065F46',
-                        borderWidth: 1,
-                        stack: 'Stack 1',
-                    }
-                ]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    x: {
-                        stacked: false, 
-                        grid: { display: false }
-                    },
-                    y: {
-                        stacked: false,
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    legend: { position: 'top' },
-                    tooltip: {
-                        callbacks: {
-                            label: (context) => `${context.dataset.label}: ${context.raw}`
-                        }
-                    }
-                }
-            }
-        });
+        // Hàm tạo màu sắc ngẫu nhiên nhưng đảm bảo độ tương phản (dùng HSL)
+        const getRandomColor = (index, total) => {
+            const hue = (index * (360 / total) + 120) % 360; // Bắt đầu từ màu xanh (120)
+            return `hsl(${hue}, 70%, 55%)`; 
+        };
 
-        // 4.2. Biểu đồ tròn K22+K22A (tỷ lệ SV đã học lại)
-        const k22APieCtx = document.getElementById('k22ApieChart').getContext('2d');
-        new Chart(k22APieCtx, {
-            type: 'doughnut',
-            data: {
-                labels: ['Đã học lại (77.5%)', 'Chưa học lại (22.5%)'],
-                datasets: [{
-                    data: [debtData.k22.paid, debtData.k22.total - debtData.k22.paid],
-                    backgroundColor: [
-                        '#10B981', 
-                        '#D1FAE5' 
-                    ],
-                    hoverOffset: 4
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    legend: { position: 'bottom' }
-                }
-            }
-        });
+        // Hàm tạo biểu đồ cột chung (có cảnh báo < 75% màu đỏ)
+        const createBarChart = (canvasId, dataObject) => {
+            const labels = Object.keys(dataObject).map(key => `${key} (${dataObject[key]}%)`);
+            const values = Object.values(dataObject);
+
+            const ctx = document.getElementById(canvasId).getContext('2d');
+
+            // Tạo mảng màu nền dựa trên giá trị (dưới 75% màu đỏ)
+            const backgroundColors = values.map((val, index) => {
+                if (val < 75) return 'rgba(248, 113, 113, 0.9)'; // Màu đỏ (high-usage)
+                return getRandomColor(index, labels.length);
+            });
+            
+            const borderColors = values.map(val => val < 75 ? 'rgb(185, 28, 28)' : '#065F46');
 
 
-        // =========================================================
-        // 5. Biểu đồ Tỷ lệ Đi học (Cột Đứng Chi tiết)
-        // =========================================================
-        
-        // Hàm tạo cấu hình biểu đồ cột đứng
-        const createBarChartConfig = (labels, data, ctxId) => {
-            const ctx = document.getElementById(ctxId).getContext('2d');
             new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Tỷ lệ Đi học (%)',
-                        data: data,
-                        // Màu đỏ cho dưới 75%, Xanh cho trên 75%
-                        backgroundColor: data.map(val => val < 75 ? '#F87171' : '#10B981'), 
-                        borderColor: '#065F46',
+                        label: 'Tỷ Lệ Đi Học (%)',
+                        data: values,
+                        backgroundColor: backgroundColors,
+                        borderColor: borderColors,
                         borderWidth: 1,
+                        borderRadius: 6,
                     }]
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: false, // Cho phép chart-container-tall hoạt động
+                    maintainAspectRatio: false, 
                     scales: {
                         y: { 
                             beginAtZero: true, 
                             max: 100, 
-                            title: { display: true, text: 'Tỷ lệ (%)' }
+                            title: { display: true, text: 'Tỷ lệ (%)' },
+                            ticks: { callback: (value) => value + '%' }
                         },
                         x: { 
                             grid: { display: false },
                             ticks: {
                                 // Tự động xoay nhãn nếu quá nhiều
-                                autoSkip: true,
-                                maxRotation: 90, 
-                                minRotation: 0,
+                                autoSkip: false,
+                                maxRotation: 60, 
+                                minRotation: 60,
+                                font: {
+                                    size: 10 // Giảm kích thước font cho nhãn x
+                                }
                             }
                         }
                     },
@@ -509,48 +448,160 @@
             });
         };
 
-        // 5.1. Hệ PTCĐ (17 lớp chi tiết)
-        createBarChartConfig(ptcdAttendanceData.labels, ptcdAttendanceData.data, 'attendancePTCDChart');
 
-        // 5.2. Hệ Cao đẳng (11 ngành chi tiết)
-        createBarChartConfig(cdAttendanceData.labels, cdAttendanceData.data, 'attendanceCDChart');
-
-        // 5.3. Các lớp Tiếng Đức
-        createBarChartConfig(germanAttendanceData.labels, germanAttendanceData.data, 'attendanceGermanChart');
-        
         // =========================================================
-        // 6. Biểu đồ Thống kê Quy mô HS Hệ PTCĐ 
+        // HÀM TẠO BIỂU ĐỒ TIẾNG ĐỨC (MÀU ĐỒNG NHẤT KHÔNG CẢNH BÁO)
         // =========================================================
         
-        const ptcdStudentCountCtx = document.getElementById('ptcdStudentCountChart').getContext('2d');
-        new Chart(ptcdStudentCountCtx, {
-            type: 'bar',
-            data: {
-                labels: ptcdStudentCountData.labels,
-                datasets: [{
-                    label: 'Số lượng Học sinh',
-                    data: ptcdStudentCountData.data,
-                    backgroundColor: '#10B981', // Xanh đậm
-                    borderColor: '#065F46',
-                    borderWidth: 1,
-                }]
-            },
-            options: {
-                responsive: true,
-                scales: {
-                    y: { beginAtZero: true },
-                    x: { grid: { display: false } }
+        const createGermanBarChart = (canvasId, dataObject) => {
+            const labels = Object.keys(dataObject).map(key => `${key} (${dataObject[key]}%)`);
+            const values = Object.values(dataObject);
+
+            const ctx = document.getElementById(canvasId).getContext('2d');
+            
+            // Màu xanh lá cây đồng nhất theo yêu cầu
+            const UNIFORM_GREEN = 'rgba(16, 185, 129, 0.9)'; // primary-green tone
+            const backgroundColors = Array(values.length).fill(UNIFORM_GREEN);
+            const borderColors = Array(values.length).fill('#065F46'); // dark-text
+
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Tỷ Lệ Đi Học (%)',
+                        data: values,
+                        backgroundColor: backgroundColors,
+                        borderColor: borderColors,
+                        borderWidth: 1,
+                        borderRadius: 6,
+                    }]
                 },
-                plugins: {
-                    legend: { display: false },
-                    tooltip: {
-                        callbacks: {
-                            label: (context) => `Số lượng: ${context.raw} HS`
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false, 
+                    scales: {
+                        y: { 
+                            beginAtZero: true, 
+                            max: 100, 
+                            title: { display: true, text: 'Tỷ lệ (%)' },
+                            ticks: { callback: (value) => value + '%' }
+                        },
+                        x: { 
+                            grid: { display: false },
+                            ticks: {
+                                autoSkip: false,
+                                maxRotation: 60, 
+                                minRotation: 60,
+                                font: {
+                                    size: 10
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: (context) => `Tỷ lệ: ${context.raw}%`
+                            }
                         }
                     }
                 }
+            });
+        };
+
+
+        // =========================================================
+        // KHỞI TẠO CÁC BIỂU ĐỒ KHÁC (PHẦN 4 & 6)
+        // =========================================================
+        
+        const initOtherCharts = () => {
+            // 4.1. Biểu đồ cột xếp chồng (Tổng SV Nợ môn vs SV đã Học lại)
+            const debtCtx = document.getElementById('debtChart').getContext('2d');
+            new Chart(debtCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['K22+K22A', 'K23+K23A', 'K24+K24A'],
+                    datasets: [
+                        {
+                            label: 'Số SV Cần Học lại',
+                            data: [debtData.k22.total, debtData.k23.total, debtData.k24.total],
+                            backgroundColor: '#D1FAE5',
+                            borderColor: '#10B981',
+                            borderWidth: 1,
+                            stack: 'Stack 0',
+                        },
+                        {
+                            label: 'Số SV Đã Học lại (Hoàn thành)',
+                            data: [debtData.k22.paid, debtData.k23.paid, debtData.k24.paid],
+                            backgroundColor: '#10B981',
+                            borderColor: '#065F46',
+                            borderWidth: 1,
+                            stack: 'Stack 1',
+                        }
+                    ]
+                },
+                options: { responsive: true, scales: { x: { stacked: false, grid: { display: false } }, y: { stacked: false, beginAtZero: true } }, plugins: { legend: { position: 'top' } } }
+            });
+
+            // 4.2. Biểu đồ tròn K22+K22A (tỷ lệ SV đã học lại)
+            const k22APieCtx = document.getElementById('k22ApieChart').getContext('2d');
+            new Chart(k22APieCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Đã học lại (77.5%)', 'Chưa học lại (22.5%)'],
+                    datasets: [{
+                        data: [debtData.k22.paid, debtData.k22.total - debtData.k22.paid],
+                        backgroundColor: ['#10B981', '#D1FAE5'],
+                        hoverOffset: 4
+                    }]
+                },
+                options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+            });
+
+            // 6. Biểu đồ Thống kê Quy mô HS Hệ PTCĐ
+            const ptcdStudentCountCtx = document.getElementById('ptcdStudentCountChart').getContext('2d');
+            new Chart(ptcdStudentCountCtx, {
+                type: 'bar',
+                data: {
+                    labels: ptcdStudentCountData.labels,
+                    datasets: [{
+                        label: 'Số lượng Học sinh',
+                        data: ptcdStudentCountData.data,
+                        backgroundColor: '#10B981',
+                        borderColor: '#065F46',
+                        borderWidth: 1,
+                    }]
+                },
+                options: { responsive: true, scales: { y: { beginAtZero: true }, x: { grid: { display: false } } }, plugins: { legend: { display: false } } }
+            });
+        };
+
+        // =========================================================
+        // KHỞI TẠO TẤT CẢ BIỂU ĐỒ
+        // =========================================================
+        
+        window.onload = function() {
+            try {
+                // Khởi tạo biểu đồ Tỷ lệ đi học (Phần 5)
+                createBarChart('attendancePTCDChart', ptcdAttendanceData);
+                // Khởi tạo biểu đồ Tiếng Đức (sử dụng hàm riêng để đảm bảo màu đồng nhất)
+                createGermanBarChart('attendanceDEChart', deAttendanceData);
+                createBarChart('attendanceCDChart', cdAttendanceData);
+
+                // Khởi tạo các biểu đồ khác
+                initOtherCharts();
+                
+            } catch (error) {
+                console.error("Lỗi khi tạo biểu đồ:", error);
+                const container = document.querySelector('.max-w-6xl');
+                const errorMessage = document.createElement('p');
+                errorMessage.className = 'text-red-500 text-center text-xl mt-10 p-5 bg-red-100 rounded-lg';
+                errorMessage.textContent = 'Lỗi hiển thị biểu đồ. Vui lòng kiểm tra console.';
+                container.appendChild(errorMessage);
             }
-        });
+        };
     </script>
 
 </body>
