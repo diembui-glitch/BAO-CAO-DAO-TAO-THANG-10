@@ -83,6 +83,17 @@
                     <span class="inline-block mt-2 text-xs font-semibold text-white bg-primary-green px-2 py-1 rounded-full">Đã hoàn thành</span>
                 </div>
             </div>
+
+            <!-- KẾ HOẠCH THÁNG 11 -->
+            <div class="mt-8 p-4 bg-white rounded-lg border-l-4 border-secondary-green">
+                <h3 class="font-bold text-xl text-secondary-green mb-3">Kế hoạch Tháng 11</h3>
+                <ul class="list-disc list-inside ml-4 space-y-1 text-sm text-gray-700">
+                    <li>Tham gia kiểm định theo kế hoạch của nhà trường.</li>
+                    <li>Tổ chức môn học Pháp Luật và Giáo dục thể chất.</li>
+                    <li>Gửi sinh viên đi học Quốc Phòng An Ninh.</li>
+                    <li>Phối hợp Khoa ngành tham gia dự giờ chuyên môn.</li>
+                </ul>
+            </div>
         </section>
 
         <!-- 2. Hệ Phổ thông Cao đẳng (PTCĐ) -->
@@ -164,21 +175,37 @@
         <!-- 4. Báo cáo Học lại -->
         <section class="mb-10 p-6 bg-white rounded-lg card-shadow">
             <h2 class="text-3xl font-bold text-dark-text mb-6 border-l-4 border-secondary-green pl-3">4. Báo cáo Tình hình Học lại/Trả nợ môn</h2>
-            <!-- Nội dung tương tự như trước -->
+            
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                <!-- Cột trái: Biểu đồ cột Tương quan -->
                 <div>
                     <h3 class="text-xl font-semibold text-primary-green mb-3">Tương quan Sinh viên Nợ môn và Sinh viên đã Học lại (Theo số SV)</h3>
                     <canvas id="debtChart"></canvas>
                     <p class="text-sm text-gray-500 mt-2 italic">Biểu đồ so sánh tổng số sinh viên cần học lại và số lượng sinh viên đã hoàn thành giữa các khóa.</p>
                 </div>
-                <div class="flex flex-col items-center">
-                    <h3 class="text-xl font-semibold text-primary-green mb-3">Hiệu suất trả nợ môn của Khóa K22+K22A</h3>
-                    <div class="w-full max-w-xs">
-                        <canvas id="k22ApieChart"></canvas>
+
+                <!-- Cột phải: CHỨA 2 BIỂU ĐỒ TRÒN -->
+                <div class="flex flex-col gap-8">
+                    <!-- Biểu đồ 1 (Hiện có): Hiệu suất trả nợ môn K22 -->
+                    <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg border border-primary-light">
+                        <h3 class="text-xl font-semibold text-primary-green mb-3">Hiệu suất trả nợ môn (K22+K22A)</h3>
+                        <div class="w-full max-w-xs">
+                            <canvas id="k22ApieChart"></canvas>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-2 italic">Khóa K22+K22A đạt tỷ lệ hoàn thành trả nợ môn cao nhất (77.5%).</p>
                     </div>
-                    <p class="text-sm text-gray-500 mt-2 italic">Khóa K22+K22A đạt tỷ lệ hoàn thành trả nợ môn cao nhất (77.5%).</p>
+
+                    <!-- Biểu đồ 2 (MỚI): Đăng ký học lại T10 -->
+                    <div class="flex flex-col items-center p-4 bg-gray-50 rounded-lg border border-primary-light">
+                        <h3 class="text-xl font-semibold text-primary-green mb-3">Phân tích Đăng ký Học lại (Tháng 10)</h3>
+                        <div class="w-full max-w-xs">
+                            <canvas id="octoberRegistrationChart"></canvas>
+                        </div>
+                        <p class="text-sm text-gray-500 mt-2 italic">Tổng 21 sinh viên đăng ký học lại trong tháng 10, K23 chiếm tỷ lệ cao nhất.</p>
+                    </div>
                 </div>
             </div>
+
             <!-- Bảng chi tiết -->
             <div class="mt-8 overflow-x-auto">
                 <table class="min-w-full divide-y divide-primary-green/50 rounded-lg overflow-hidden border border-primary-green/50">
@@ -218,7 +245,7 @@
             </div>
         </section>
 
-        <!-- 5. Tỷ lệ Đi học (Cập nhật 3 Biểu đồ CỘT chi tiết theo Dữ liệu Mới) -->
+        <!-- 5. Tỷ lệ Đi học (3 Biểu đồ) -->
         <section class="mb-10 p-6 bg-primary-light rounded-lg card-shadow">
             <h2 class="text-3xl font-bold text-dark-text mb-6 border-l-4 border-secondary-green pl-3">5. Phân tích Tỷ lệ Đi học tháng 10 (Chi tiết từng Lớp/Ngành)</h2>
             
@@ -228,10 +255,14 @@
                 <div class="bg-white p-4 rounded-lg chart-container-tall border-t-4 border-secondary-green">
                     <h3 class="text-xl font-semibold text-primary-green mb-3 text-center">Tỷ Lệ Đi Học: Hệ Phổ Thông Cao Đẳng (18 Lớp)</h3>
                     <canvas id="attendancePTCDChart"></canvas>
-                    <p class="text-xs text-center text-gray-500 mt-2">Các lớp dưới 75% (10A3, 10A6) cần được giám sát nề nếp chặt chẽ hơn.</p>
+                    <!-- GHI CHÚ MỚI ĐƯỢC BỔ SUNG -->
+                    <p class="text-xs text-center text-gray-500 mt-2">
+                        Các lớp dưới 75% (10A3, 10A6) cần được giám sát nề nếp chặt chẽ hơn.
+                        <br><strong>Ghi chú:</strong> lớp 10A3 đã tách và gộp vào các lớp bên cơ sở Dinhle.
+                    </p>
                 </div>
                 
-                <!-- Biểu đồ 2: Tỷ lệ đi học Tiếng Đức (ĐỒNG NHẤT MÀU XANH) -->
+                <!-- Biểu đồ 2: Tỷ lệ đi học Tiếng Đức -->
                 <div class="bg-white p-4 rounded-lg chart-container-tall border-t-4 border-secondary-green">
                     <h3 class="text-xl font-semibold text-primary-green mb-3 text-center">Tỷ Lệ Đi Học: Ngành Tiếng Đức (4 Lớp)</h3>
                     <canvas id="attendanceDEChart"></canvas>
@@ -271,9 +302,43 @@
             </div>
         </section>
 
-        <!-- 7. Báo cáo Cơ sở Vật chất -->
+        <!-- 7. Thống kê Quy mô SV Hệ Cao Đẳng (MỚI BỔ SUNG) -->
         <section class="mb-10 p-6 bg-primary-light rounded-lg card-shadow">
-            <h2 class="text-3xl font-bold text-dark-text mb-6 border-l-4 border-secondary-green pl-3">7. Báo cáo Cơ sở Vật chất & Công suất Phòng học</h2>
+            <h2 class="text-3xl font-bold text-dark-text mb-6 border-l-4 border-secondary-green pl-3">7. Thống kê Quy mô Sinh viên Hệ Cao Đẳng</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Tổng SV -->
+                <div class="md:col-span-3 p-6 bg-white rounded-lg border-b-4 border-primary-green text-center">
+                    <h3 class="text-2xl font-bold text-primary-green">Tổng quy mô Sinh viên Cao đẳng</h3>
+                    <p class="text-6xl font-extrabold text-primary-green mt-2">2,193</p>
+                    <p class="text-gray-600 mt-1">Sinh viên (Tính đến T10/2025)</p>
+                </div>
+                <!-- Các khóa -->
+                <div class="p-4 bg-white rounded-lg border-t-4 border-secondary-green/50 text-center">
+                    <p class="text-sm font-semibold text-dark-text">K25 (Mới)</p>
+                    <p class="text-3xl font-bold text-secondary-green">398 <span class="text-base font-medium">SV</span></p>
+                </div>
+                 <div class="p-4 bg-white rounded-lg border-t-4 border-secondary-green/50 text-center">
+                    <p class="text-sm font-semibold text-dark-text">K24</p>
+                    <p class="text-3xl font-bold text-secondary-green">854 <span class="text-base font-medium">SV</span></p>
+                </div>
+                 <div class="p-4 bg-white rounded-lg border-t-4 border-secondary-green/50 text-center">
+                    <p class="text-sm font-semibold text-dark-text">K23</p>
+                    <p class="text-3xl font-bold text-secondary-green">920 <span class="text-base font-medium">SV</span></p>
+                </div>
+                 <div class="p-4 bg-white rounded-lg border-t-4 border-yellow-500/50 text-center">
+                    <p class="text-sm font-semibold text-dark-text">K22</p>
+                    <p class="text-3xl font-bold text-yellow-600">20 <span class="text-base font-medium">SV</span></p>
+                </div>
+                 <div class="p-4 bg-white rounded-lg border-t-4 border-yellow-500/50 text-center">
+                    <p class="text-sm font-semibold text-dark-text">K21</p>
+                    <p class="text-3xl font-bold text-yellow-600">1 <span class="text-base font-medium">SV</span></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 8. Báo cáo Cơ sở Vật chất (Đã đổi thành Mục 8) -->
+        <section class="mb-10 p-6 bg-primary-light rounded-lg card-shadow">
+            <h2 class="text-3xl font-bold text-dark-text mb-6 border-l-4 border-secondary-green pl-3">8. Báo cáo Cơ sở Vật chất & Công suất Phòng học</h2>
             <!-- Nội dung tương tự như trước -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
                 
@@ -301,10 +366,10 @@
                 <p class="text-sm text-gray-700 mt-1">Công suất cơ sở Dinhle đạt 93% gây khó khăn đáng kể trong việc **xếp lịch học bù** và **tổ chức sự kiện** lớn. Cần có kế hoạch sử dụng linh hoạt và xem xét chuyển một số lớp ghép/lớp học bù sang cơ sở Cầu Giấy để giảm tải cho Dinhle.</p>
             </div>
         </section>
-
-        <!-- 8. Báo cáo Tình hình Giáo viên (Cập nhật Vấn đề Nề nếp) -->
+        
+        <!-- 9. Tình hình Giáo viên (Đã đổi thành Mục 9) -->
         <section class="mb-10 p-6 bg-white rounded-lg card-shadow">
-            <h2 class="text-3xl font-bold text-dark-text mb-4 border-l-4 border-secondary-green pl-3">8. Tình hình Giáo viên: Vấn đề Nề nếp & Giám sát</h2>
+            <h2 class="text-3xl font-bold text-dark-text mb-4 border-l-4 border-secondary-green pl-3">9. Tình hình Giáo viên: Vấn đề Nề nếp & Giám sát</h2>
             
             <div class="p-4 bg-red-50 rounded-lg border-l-4 border-red-500">
                 <h3 class="font-bold text-xl text-red-600 mb-2">Vấn đề Nề nếp Cần Giải quyết Ngay</h3>
@@ -355,7 +420,7 @@
             'Quản trị doanh nghiệp': 78, 'Chăm sóc sắc đẹp': 80
         };
 
-        // 5.3. Ngành Tiếng Đức (4 lớp chi tiết) - Dữ liệu mới
+        // 5.3. Ngành Tiếng Đức (4 lớp chi tiết)
         const deAttendanceData = {
             'TĐA1-08': 61, 'TĐA2-09': 91, 'TĐB1-07': 88, 'TĐA1-10': 79
         };
@@ -365,6 +430,12 @@
             k22: { total: 249, paid: 193 },
             k23: { total: 422, paid: 85 },
             k24: { total: 529, paid: 6 },
+        };
+        
+        // 4.3. Dữ liệu Đăng ký học lại T10 (Tổng 21)
+        const octoberRegistrationData = {
+            labels: ['K23 (8 SV)', 'K24 (7 SV)', 'K22 (6 SV)'], // 8 + 7 + 6 = 21
+            data: [8, 7, 6],
         };
 
         // --- Dữ liệu thống kê quy mô HS PTCĐ ---
@@ -517,7 +588,7 @@
         // =========================================================
         
         const initOtherCharts = () => {
-            // 4.1. Biểu đồ cột xếp chồng (Tổng SV Nợ môn vs SV đã Học lại)
+            // 4.1. Biểu đồ cột Tương quan (Tổng SV Nợ môn vs SV đã Học lại)
             const debtCtx = document.getElementById('debtChart').getContext('2d');
             new Chart(debtCtx, {
                 type: 'bar',
@@ -559,6 +630,25 @@
                 },
                 options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
             });
+            
+            // 4.3. (MỚI) Biểu đồ tròn Đăng ký học lại T10
+            const octoberRegCtx = document.getElementById('octoberRegistrationChart').getContext('2d');
+            new Chart(octoberRegCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: octoberRegistrationData.labels,
+                    datasets: [{
+                        data: octoberRegistrationData.data,
+                        backgroundColor: [
+                            '#34D399', // secondary-green
+                            '#F59E0B', // warning-yellow
+                            '#60A5FA'  // A blue color
+                        ],
+                        hoverOffset: 4
+                    }]
+                },
+                options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+            });
 
             // 6. Biểu đồ Thống kê Quy mô HS Hệ PTCĐ
             const ptcdStudentCountCtx = document.getElementById('ptcdStudentCountChart').getContext('2d');
@@ -586,8 +676,7 @@
             try {
                 // Khởi tạo biểu đồ Tỷ lệ đi học (Phần 5)
                 createBarChart('attendancePTCDChart', ptcdAttendanceData);
-                // Khởi tạo biểu đồ Tiếng Đức (sử dụng hàm riêng để đảm bảo màu đồng nhất)
-                createGermanBarChart('attendanceDEChart', deAttendanceData);
+                createGermanBarChart('attendanceDEChart', deAttendanceData); // Sử dụng hàm riêng cho Tiếng Đức
                 createBarChart('attendanceCDChart', cdAttendanceData);
 
                 // Khởi tạo các biểu đồ khác
